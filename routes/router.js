@@ -22,6 +22,12 @@ router.get('/', (req, res) => {
 
 // поиск трат за конкретный день
 router.post('/', (req, res) => {
-   
+    if (!req.body.date) {
+        res.sendStatus(400)
+        return
+    }
+
+    res.send(db.findExpensesByDate(req.body.date))
+    res.sendStatus(201)
 })
 
